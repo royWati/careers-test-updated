@@ -1,4 +1,4 @@
-package com.chainbox.safaricom.careerstest.ResponseMessages;
+package com.chainbox.safaricom.careerstest.domain.vo;
 
 public class Success {
 

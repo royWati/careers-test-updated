@@ -1,6 +1,4 @@
-package com.chainbox.safaricom.careerstest.ResponseMessages;
-
-import com.chainbox.safaricom.careerstest.Entities.tb_job_applicants;
+package com.chainbox.safaricom.careerstest.domain.vo;
 
 import java.util.List;
 
