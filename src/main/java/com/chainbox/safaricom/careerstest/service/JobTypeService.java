@@ -1,7 +1,6 @@
 package com.chainbox.safaricom.careerstest.service;
 
 import com.chainbox.safaricom.careerstest.domain.JobType;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

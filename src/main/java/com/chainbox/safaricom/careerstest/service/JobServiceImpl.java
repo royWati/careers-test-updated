@@ -1,16 +1,18 @@
 package com.chainbox.safaricom.careerstest.service;
 
 import com.chainbox.safaricom.careerstest.domain.Job;
+import com.chainbox.safaricom.careerstest.domain.UuidGenerator;
 import com.chainbox.safaricom.careerstest.repository.JobRepository;
 import com.chainbox.safaricom.careerstest.utils.exception.BadRequestException;
 import com.chainbox.safaricom.careerstest.utils.exception.ResourceNotFoundException;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
-public class JobServiceImpl implements JobService {
+public class JobServiceImpl implements JobService,UuidGenerator {
 
     private final JobRepository jobRepository;
 
@@ -20,10 +22,11 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Job create(Job job) {
-        if (null == job.getJobType()){
+        if (null == job.getJobType()) {
             throw new BadRequestException();
         }
 
+        job.setUuid(generate());
         return jobRepository.save(job);
     }
 
@@ -51,11 +54,16 @@ public class JobServiceImpl implements JobService {
             job.setDeleted(true);
 
             jobRepository.save(job);
-        } );
+        });
 
     }
 
-    private Job validate(Long id){
+    private Job validate(Long id) {
         return jobRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Override
+    public String generate() {
+        return UUID.randomUUID().toString();
     }
 }

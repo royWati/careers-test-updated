@@ -1,14 +1,11 @@
 package com.chainbox.safaricom.careerstest.domain;
 
-import java.time.ZonedDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.Version;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -24,9 +21,14 @@ public class BaseEntity {
     @Version
     private long version;
 
+    @Column(name = "uuid", updatable = false,unique = true, nullable = false)
+    @GeneratedValue(generator = "UUID",strategy = GenerationType.IDENTITY)
+    private String uuid;
+
     @PrePersist
     public void prePersist() {
         this.dateCreated = ZonedDateTime.now();
         this.deleted = false;
+
     }
 }

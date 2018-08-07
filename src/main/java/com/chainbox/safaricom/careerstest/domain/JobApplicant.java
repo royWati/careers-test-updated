@@ -1,23 +1,19 @@
 package com.chainbox.safaricom.careerstest.domain;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "job_applicants")
-public class JobApplicant {
+public class JobApplicant extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -32,4 +28,8 @@ public class JobApplicant {
     private String educationLevel;
     @Column(name = "years_of_experience")
     private int yearsOfExperience;
+
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private Set<Job> jobsApplied;
+
 }

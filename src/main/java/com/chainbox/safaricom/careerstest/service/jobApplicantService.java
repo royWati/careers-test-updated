@@ -3,8 +3,7 @@ package com.chainbox.safaricom.careerstest.service;
 import com.chainbox.safaricom.careerstest.domain.JobApplicant;
 import com.chainbox.safaricom.careerstest.domain.vo.Success;
 import com.chainbox.safaricom.careerstest.domain.vo.UpdateResponse;
-import com.chainbox.safaricom.careerstest.repository.applicants;
-
+import com.chainbox.safaricom.careerstest.repository.applicantsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ import java.util.stream.Collectors;
 public class jobApplicantService {
 
     @Autowired
-    private applicants appli_interface;
+    private applicantsRepository appli_interface;
 
     public List<Success> add_applicant(JobApplicant applicants) {
         List<Success> response = new ArrayList<>();
