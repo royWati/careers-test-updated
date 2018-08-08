@@ -24,7 +24,7 @@ public class applicantServiceImpl implements applicantService {
     @Override
     public JobApplicant create(JobApplicant jobApplicant) {
 
-        if (null == jobApplicant.getJobsApplied()) throw new BadRequestException();
+        if (null == jobApplicant.getJobs()) throw new BadRequestException();
     //    jobApplicant.setUuid(generate());
         return applicantsRepo.save(jobApplicant);
     }

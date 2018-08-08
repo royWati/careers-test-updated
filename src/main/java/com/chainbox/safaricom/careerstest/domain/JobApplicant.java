@@ -28,12 +28,12 @@ public class JobApplicant extends BaseEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "education_level")
-    private String educationLevel;
+    private String educationLevel; //todo should be an enum
     @Column(name = "years_of_experience")
     private int yearsOfExperience;
 
-
-   @ManyToMany(mappedBy = "id",fetch = FetchType.LAZY)
-    private List<Job> jobsApplied=new ArrayList<>();
+   @ManyToMany
+   @JoinTable(name = "job_applicant_jobs")
+    private List<Job> jobs=new ArrayList<>();
 
 }
