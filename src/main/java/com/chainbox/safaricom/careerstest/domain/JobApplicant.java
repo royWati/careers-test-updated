@@ -1,15 +1,18 @@
 package com.chainbox.safaricom.careerstest.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -17,9 +20,6 @@ import java.util.Set;
 @Entity
 @Table(name = "job_applicants")
 public class JobApplicant extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -32,8 +32,8 @@ public class JobApplicant extends BaseEntity {
     @Column(name = "years_of_experience")
     private int yearsOfExperience;
 
-   @ManyToMany
-   @JoinTable(name = "job_applicant_jobs")
-    private List<Job> jobs=new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "job_applicant_jobs")
+    private List<Job> jobs = new ArrayList<>();
 
 }

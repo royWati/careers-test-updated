@@ -2,11 +2,21 @@ package com.chainbox.safaricom.careerstest.controller;
 
 import com.chainbox.safaricom.careerstest.domain.JobType;
 import com.chainbox.safaricom.careerstest.service.JobTypeService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/jobTypes")
@@ -29,17 +39,17 @@ public class JobTypeRestController {
     }
 
     @GetMapping("/{jobTypeId}")
-    public JobType fetchOne(@PathVariable Long jobTypeId) {
+    public JobType fetchOne(@PathVariable UUID jobTypeId) {
         return jobTypeService.fetchById(jobTypeId);
     }
 
     @PutMapping("/{jobTypeId}")
-    public JobType update(@PathVariable Long jobTypeId, @RequestBody JobType jobType) {
+    public JobType update(@PathVariable UUID jobTypeId, @RequestBody JobType jobType) {
         return jobTypeService.update(jobTypeId, jobType);
     }
 
     @DeleteMapping("/{jobTypeId}")
-    public void delete(@PathVariable Long jobTypeId) {
+    public void delete(@PathVariable UUID jobTypeId) {
         jobTypeService.delete(jobTypeId);
     }
 }

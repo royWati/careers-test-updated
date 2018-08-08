@@ -1,8 +1,11 @@
 package com.chainbox.safaricom.careerstest.service;
 
 import com.chainbox.safaricom.careerstest.domain.Job;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.UUID;
 
 public interface JobService {
 
@@ -10,10 +13,10 @@ public interface JobService {
 
     Page<Job> fetchAll(Pageable pageable);
 
-    Job fetchOneById(Long id);
+    Job fetchOneById(UUID id);
 
-    Job update(Long id, Job job);
+    Job update(UUID id, Job job);
 
-    void delete(Long id);
+    void delete(UUID id);
 
 }

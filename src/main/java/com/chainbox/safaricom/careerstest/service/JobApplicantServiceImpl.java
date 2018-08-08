@@ -1,9 +1,9 @@
 package com.chainbox.safaricom.careerstest.service;
 
 import com.chainbox.safaricom.careerstest.domain.JobApplicant;
-import com.chainbox.safaricom.careerstest.domain.UuidGenerator;
-import com.chainbox.safaricom.careerstest.repository.applicantsRepository;
+import com.chainbox.safaricom.careerstest.repository.JobApplicantRepository;
 import com.chainbox.safaricom.careerstest.utils.exception.BadRequestException;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -13,11 +13,11 @@ import java.util.UUID;
 
 
 @Service
-public class applicantServiceImpl implements applicantService {
+public class JobApplicantServiceImpl implements JobApplicantService {
 
-    private final applicantsRepository applicantsRepo;
+    private final JobApplicantRepository applicantsRepo;
 
-    public applicantServiceImpl(applicantsRepository applicantsRepo) {
+    public JobApplicantServiceImpl(JobApplicantRepository applicantsRepo) {
         this.applicantsRepo = applicantsRepo;
     }
 
@@ -25,7 +25,7 @@ public class applicantServiceImpl implements applicantService {
     public JobApplicant create(JobApplicant jobApplicant) {
 
         if (null == jobApplicant.getJobs()) throw new BadRequestException();
-    //    jobApplicant.setUuid(generate());
+        //    jobApplicant.setUuid(generate());
         return applicantsRepo.save(jobApplicant);
     }
 
@@ -36,18 +36,18 @@ public class applicantServiceImpl implements applicantService {
     }
 
     @Override
-    public JobApplicant fetchOneById(Long id) {
+    public JobApplicant fetchOneById(UUID id) {
         return validate(id);
     }
 
     @Override
-    public JobApplicant update(Long id, JobApplicant job) {
+    public JobApplicant update(UUID id, JobApplicant job) {
         validate(id);
         return applicantsRepo.save(job);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(UUID id) {
         applicantsRepo.findById(id).ifPresent(jobApplicant -> {
             jobApplicant.setDeleted(true);
 
@@ -55,10 +55,9 @@ public class applicantServiceImpl implements applicantService {
         });
     }
 
-    private JobApplicant validate(Long id) {
+    private JobApplicant validate(UUID id) {
         return applicantsRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
-
 
 
 }

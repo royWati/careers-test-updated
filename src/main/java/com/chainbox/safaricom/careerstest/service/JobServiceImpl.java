@@ -1,10 +1,10 @@
 package com.chainbox.safaricom.careerstest.service;
 
 import com.chainbox.safaricom.careerstest.domain.Job;
-import com.chainbox.safaricom.careerstest.domain.UuidGenerator;
 import com.chainbox.safaricom.careerstest.repository.JobRepository;
 import com.chainbox.safaricom.careerstest.utils.exception.BadRequestException;
 import com.chainbox.safaricom.careerstest.utils.exception.ResourceNotFoundException;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class JobServiceImpl implements JobService,UuidGenerator {
+public class JobServiceImpl implements JobService {
 
     private final JobRepository jobRepository;
 
@@ -26,7 +26,7 @@ public class JobServiceImpl implements JobService,UuidGenerator {
             throw new BadRequestException();
         }
 
-     //   job.setUuid(generate());
+        //   job.setUuid(generate());
         return jobRepository.save(job);
     }
 
@@ -36,19 +36,19 @@ public class JobServiceImpl implements JobService,UuidGenerator {
     }
 
     @Override
-    public Job fetchOneById(Long id) {
+    public Job fetchOneById(UUID id) {
         return validate(id);
     }
 
     @Override
-    public Job update(Long id, Job job) {
+    public Job update(UUID id, Job job) {
         validate(id);
 
         return jobRepository.save(job);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(UUID id) {
 
         jobRepository.findById(id).ifPresent(job -> {
             job.setDeleted(true);
@@ -58,12 +58,8 @@ public class JobServiceImpl implements JobService,UuidGenerator {
 
     }
 
-    private Job validate(Long id) {
+    private Job validate(UUID id) {
         return jobRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
-    @Override
-    public String generate() {
-        return UUID.randomUUID().toString();
-    }
 }
