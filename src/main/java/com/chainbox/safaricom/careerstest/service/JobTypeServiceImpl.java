@@ -20,7 +20,7 @@ public class JobTypeServiceImpl implements JobTypeService,UuidGenerator {
 
     @Override
     public JobType create(JobType jobType) {
-        jobType.setUuid(generate());
+      //  jobType.setUuid(generate());
         return jobTypeRepository.save(jobType);
     }
 

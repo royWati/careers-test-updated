@@ -26,7 +26,7 @@ public class JobServiceImpl implements JobService,UuidGenerator {
             throw new BadRequestException();
         }
 
-        job.setUuid(generate());
+     //   job.setUuid(generate());
         return jobRepository.save(job);
     }
 

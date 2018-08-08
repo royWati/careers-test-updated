@@ -21,9 +21,9 @@ public class BaseEntity {
     @Version
     private long version;
 
-    @Column(name = "uuid", updatable = false,unique = true, nullable = false)
-    @GeneratedValue(generator = "UUID",strategy = GenerationType.IDENTITY)
-    private String uuid;
+//    @Column(name = "uuid", updatable = false,unique = true, nullable = false)
+//    @GeneratedValue(generator = "UUID",strategy = GenerationType.IDENTITY)
+//    private String uuid;
 
     @PrePersist
     public void prePersist() {

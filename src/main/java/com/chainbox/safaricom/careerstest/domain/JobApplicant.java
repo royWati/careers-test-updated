@@ -1,11 +1,14 @@
 package com.chainbox.safaricom.careerstest.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -29,7 +32,8 @@ public class JobApplicant extends BaseEntity {
     @Column(name = "years_of_experience")
     private int yearsOfExperience;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-    private Set<Job> jobsApplied;
+
+   @ManyToMany(mappedBy = "id",fetch = FetchType.LAZY)
+    private List<Job> jobsApplied=new ArrayList<>();
 
 }
