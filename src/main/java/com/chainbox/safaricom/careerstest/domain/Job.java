@@ -16,9 +16,8 @@ import java.time.ZonedDateTime;
 public class Job extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @Column(name = "job_name")
     private String name;
     private String description;

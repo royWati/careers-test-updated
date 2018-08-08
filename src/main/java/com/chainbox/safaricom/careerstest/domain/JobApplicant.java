@@ -15,8 +15,8 @@ import java.util.Set;
 @Table(name = "job_applicants")
 public class JobApplicant extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
