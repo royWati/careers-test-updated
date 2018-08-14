@@ -30,6 +30,7 @@ public class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private UUID id;
 
     @PrePersist

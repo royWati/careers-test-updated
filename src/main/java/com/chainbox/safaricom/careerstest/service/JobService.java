@@ -5,6 +5,7 @@ import com.chainbox.safaricom.careerstest.domain.Job;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface JobService {
@@ -18,5 +19,7 @@ public interface JobService {
     Job update(UUID id, Job job);
 
     void delete(UUID id);
+
+    List<Job> search(String s);
 
 }
